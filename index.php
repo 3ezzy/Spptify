@@ -1,4 +1,6 @@
 <?php
+require_once 'config/database.php';
+// var_dump($db);
 ?>
 <!DOCTYPE html>
 <html lang="en">
