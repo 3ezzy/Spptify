@@ -5,22 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bb7b7d6-c3a4-4b49-9177-103814682941" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Views/login.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/playlistDetail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/playlistIndex.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/register.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/songDetail.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/songIndex.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Spptify.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminDashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/adminDashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AdminController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/PlaylistController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/PlaylistController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/SongController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SongController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/userController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/userController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/adminDashboard.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +90,7 @@
       <option name="presentableId" value="Default" />
       <updated>1738678139979</updated>
       <workItem from="1738678141056" duration="7893000" />
-      <workItem from="1738710884972" duration="9588000" />
+      <workItem from="1738710884972" duration="13880000" />
     </task>
     <servers />
   </component>
