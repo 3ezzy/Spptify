@@ -1,8 +1,13 @@
 <?php
-namespace App\Controllers;
+// namespace App\Controllers;
 
-use App\Models\Song;
-use App\Models\Artist;
+// use App\Models\Song;
+// use App\Models\Artist;
+
+require_once 'Models/Song.php';
+require_once 'Models/Artist.php';
+require_once 'Controllers/Controller.php';
+
 
 class SongController extends Controller {
     // Display all public songs

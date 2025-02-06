@@ -1,7 +1,10 @@
 <?php
-namespace App\Controllers;
+// namespace App\Controllers;
 
-use App\Models\Song;
+// use App\Models\Song;
+
+require_once 'Models/Song.php';
+require_once 'Controllers/Controller.php';
 
 class SongController extends Controller {
     public function index() {

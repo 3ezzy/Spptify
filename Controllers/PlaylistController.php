@@ -1,8 +1,12 @@
 <?php
-namespace App\Controllers;
+// namespace App\Controllers;
 
-use App\Models\Playlist;
-use App\Models\Song;
+// use App\Models\Playlist;
+// use App\Models\Song;
+
+require_once 'Models/Playlist.php';
+require_once 'Models/Song.php';
+require_once 'Controllers/Controller.php';
 
 class PlaylistController extends Controller {
     // Display all public playlists
@@ -20,7 +24,7 @@ class PlaylistController extends Controller {
 
         if ($playlist) {
             $songModel = new Song();
-            $songs = $songModel->getSongsByPlaylist($playlistId);
+            $songs = $songModel->getSongsByPlaylist($playlistId); // Ensure this method exists in Song model
 
             $this->view('playlist/detail', [
                 'playlist' => $playlist,

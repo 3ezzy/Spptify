@@ -1,5 +1,5 @@
 <?php
-namespace App\Models;
+// namespace App\Models;
 
 require_once __DIR__ . '/../../app/config/database.php'; // Include the database connection
 

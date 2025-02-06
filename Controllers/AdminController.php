@@ -1,7 +1,11 @@
 <?php
-namespace App\Controllers;
+// namespace App\Controllers;
 
-use App\Models\Admin;
+// use App\Models\Admin;
+
+require_once 'Models/Admin.php';
+
+require_once 'Controllers/Controller.php';
 
 class AdminController extends Controller {
     // Display the admin dashboard (overview)

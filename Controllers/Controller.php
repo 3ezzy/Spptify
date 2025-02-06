@@ -1,6 +1,5 @@
 <?php
-namespace App\Controllers;
-
+// namespace App\Controllers;
 class Controller {
     // Render a view and pass data to it
     protected function view($viewPath, $data = []) {
@@ -8,7 +7,7 @@ class Controller {
         extract($data);
 
         // Include the view file
-        require_once __DIR__ . "/../../views/$viewPath.php";
+        require_once __DIR__ . "/../Views/$viewPath.php";
     }
 
     // Redirect to a different URL
