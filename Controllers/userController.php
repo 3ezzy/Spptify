@@ -43,68 +43,53 @@ class UserController extends Controller
 
     // Handle the registration form submission
     public function handleRegister()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            try {
-                // Validate form inputs
-                $username = trim($_POST['username'] ?? '');
-                $email = trim($_POST['email'] ?? '');
-                $password = $_POST['password'] ?? '';
-                $confirmPassword = $_POST['confirm_password'] ?? '';
-                $accountType = $_POST['account-type'] ?? 'user';
+{
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        try {
+            // Validate form inputs
+            $username = trim($_POST['username'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
+            $confirmPassword = $_POST['confirm_password'] ?? '';
+            $accountType = $_POST['account-type'] ?? 'user';
 
-                // Enhanced validation
-                if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
-                    throw new Exception("All fields are required!");
-                }
-
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    throw new Exception("Invalid email format!");
-                }
-
-                if (strlen($password) < 8) {
-                    throw new Exception("Password must be at least 8 characters long!");
-                }
-
-                if ($password !== $confirmPassword) {
-                    throw new Exception("Passwords do not match!");
-                }
-
-                // Create a new user
-                $userModel = new User($this->db);
-                $userId = $userModel->create(
-                    $username,
-                    $email,
-                    password_hash($password, PASSWORD_DEFAULT),
-                    $accountType
-                );
-
-                if ($userId) {
-                    // Start session and log the user in
-                    session_start();
-                    $_SESSION['user_id'] = $userId;
-                    $_SESSION['username'] = $username;
-                    $_SESSION['role'] = $accountType;
-
-                    // Redirect to appropriate dashboard
-                    switch ($accountType) {
-                        case 'artist':
-                            header('Location: /views/artist/dashboard.php');
-                            break;
-                        case 'admin':
-                            header('Location: /views/admin/dashboard.php');
-                            break;
-                        default:
-                            header('Location: /index.php');
-                    }
-                    exit();
-                }
-            } catch (Exception $e) {
-                error_log("Registration Error: " . $e->getMessage());
-                echo $e->getMessage();
+            // Enhanced validation
+            if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
+                throw new Exception("All fields are required!");
             }
+
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                throw new Exception("Invalid email format!");
+            }
+
+            if (strlen($password) < 8) {
+                throw new Exception("Password must be at least 8 characters long!");
+            }
+
+            if ($password !== $confirmPassword) {
+                throw new Exception("Passwords do not match!");
+            }
+
+            // Create a new user
+            $userModel = new User($this->db);
+            $userId = $userModel->create(
+                $username,
+                $email,
+                password_hash($password, PASSWORD_DEFAULT),
+                $accountType
+            );
+
+            if ($userId) {
+                // Corrected path for redirect
+                header('Location: /Views/login.php?registered=true');
+                exit();
+            }
+        } catch (Exception $e) {
+            error_log("Registration Error: " . $e->getMessage());
+            echo $e->getMessage();
         }
     }
+}
 
     // Handle the login form submission
     public function handleLogin()
