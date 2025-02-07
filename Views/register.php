@@ -1,4 +1,8 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+// ... rest of your code
 require_once __DIR__ . '/../Controllers/UserController.php';
 require_once __DIR__ . '/../config/database.php';
 
@@ -108,10 +112,10 @@ $userController->handleRegister();
                             <input
                                 type="radio"
                                 name="account-type"
-                                value="personal"
+                                value="user"
                                 class="mr-1 md:mr-2"
                                 checked>
-                            Personal
+                            User
                         </label>
                         <label class="flex items-center text-xs md:text-sm">
                             <input

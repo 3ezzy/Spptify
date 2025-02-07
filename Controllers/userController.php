@@ -45,51 +45,64 @@ class UserController extends Controller
     public function handleRegister()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Validate form inputs
-            $username = $_POST['username'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
-            $confirmPassword = $_POST['confirm_password'] ?? '';
-            $accountType = $_POST['account-type'] ?? 'personal';
-
-            // Debug logs
-            error_log("Username: $username");
-            error_log("Email: $email");
-            error_log("Password: $password");
-            error_log("Confirm Password: $confirmPassword");
-            error_log("Account Type: $accountType");
-
-            // Basic validation
-            if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
-                echo "All fields are required!";
-                return;
-            }
-
-            if ($password !== $confirmPassword) {
-                echo "Passwords do not match!";
-                return;
-            }
-
-            // Create a new user
-            $userModel = new User($this->db);
             try {
-                $userId = $userModel->create($username, $email, password_hash($password, PASSWORD_DEFAULT), $accountType);
+                // Validate form inputs
+                $username = trim($_POST['username'] ?? '');
+                $email = trim($_POST['email'] ?? '');
+                $password = $_POST['password'] ?? '';
+                $confirmPassword = $_POST['confirm_password'] ?? '';
+                $accountType = $_POST['account-type'] ?? 'user';
+
+                // Enhanced validation
+                if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
+                    throw new Exception("All fields are required!");
+                }
+
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    throw new Exception("Invalid email format!");
+                }
+
+                if (strlen($password) < 8) {
+                    throw new Exception("Password must be at least 8 characters long!");
+                }
+
+                if ($password !== $confirmPassword) {
+                    throw new Exception("Passwords do not match!");
+                }
+
+                // Create a new user
+                $userModel = new User($this->db);
+                $userId = $userModel->create(
+                    $username,
+                    $email,
+                    password_hash($password, PASSWORD_DEFAULT),
+                    $accountType
+                );
 
                 if ($userId) {
-                    // Redirect to the login page after successful registration
-                    header('Location: views/login.php');
+                    // Start session and log the user in
+                    session_start();
+                    $_SESSION['user_id'] = $userId;
+                    $_SESSION['username'] = $username;
+                    $_SESSION['role'] = $accountType;
+
+                    // Redirect to appropriate dashboard
+                    switch ($accountType) {
+                        case 'artist':
+                            header('Location: /views/artist/dashboard.php');
+                            break;
+                        case 'admin':
+                            header('Location: /views/admin/dashboard.php');
+                            break;
+                        default:
+                            header('Location: /index.php');
+                    }
                     exit();
-                } else {
-                    echo "Registration failed!";
                 }
             } catch (Exception $e) {
-                // Log error and show a generic message to the user
-                error_log("Error: " . $e->getMessage());
-                echo "An error occurred during registration. Please try again.";
+                error_log("Registration Error: " . $e->getMessage());
+                echo $e->getMessage();
             }
-        } else {
-            // If not a POST request, show the registration form
-            $this->view('register');
         }
     }
 
@@ -138,4 +151,3 @@ class UserController extends Controller
         $this->redirect('/');
     }
 }
-?>
