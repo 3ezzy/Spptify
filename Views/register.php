@@ -1,10 +1,9 @@
 <?php
-require_once __DIR__ . '/../Controllers/userController.php';
-// use App\Controllers\UserController;
+require_once __DIR__ . '/../Controllers/UserController.php';
+require_once __DIR__ . '/../config/database.php';
 
-
-$user = new UserController;
-$user->handleRegister();
+$userController = new UserController($db);
+$userController->handleRegister();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,21 +30,6 @@ $user->handleRegister();
 
             <!-- Responsive Registration Form -->
             <form id="register-form" action="./register.php" method="POST" class="space-y-3 md:space-y-4">
-                <!-- Responsive Full Name Input -->
-                <div>
-                    <label class="block text-xs md:text-sm font-medium text-gray-300 mb-1 md:mb-2">Full Name</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-2 md:pl-3 flex items-center">
-                            <i class="fas fa-user text-xs md:text-base text-gray-500"></i>
-                        </span>
-                        <input
-                            name="full_name"
-                            type="text"
-                            placeholder="Enter your full name"
-                            class="w-full pl-8 md:pl-10 pr-3 py-1.5 md:py-2 text-xs md:text-sm bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-white">
-                    </div>
-                </div>
-
                 <!-- Responsive Username Input -->
                 <div>
                     <label class="block text-xs md:text-sm font-medium text-gray-300 mb-1 md:mb-2">Username</label>
@@ -77,21 +61,6 @@ $user->handleRegister();
                             class="w-full pl-8 md:pl-10 pr-3 py-1.5 md:py-2 text-xs md:text-sm bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-white">
                     </div>
                 </div>
-
-                <!-- Responsive Phone Number Input -->
-                <!-- <div>
-                <label class="block text-xs md:text-sm font-medium text-gray-300 mb-1 md:mb-2">Phone Number</label>
-                <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-2 md:pl-3 flex items-center">
-                            <i class="fas fa-phone text-xs md:text-base text-gray-500"></i>
-                        </span>
-                    <input
-                        type="tel"
-                        placeholder="Enter your phone number"
-                        class="w-full pl-8 md:pl-10 pr-3 py-1.5 md:py-2 text-xs md:text-sm bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
-                    >
-                </div>
-            </div> -->
 
                 <!-- Responsive Password Input -->
                 <div>

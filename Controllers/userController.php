@@ -1,14 +1,17 @@
 <?php
 
-// namespace App\Controllers;
-
-// use App\Models\User;
-
 require_once __DIR__ . '/../Models/User.php';
 require_once __DIR__ . '/Controller.php';
 
 class UserController extends Controller
 {
+    private $db;
+
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
     // Display the login page
     public function login()
     {
@@ -16,7 +19,7 @@ class UserController extends Controller
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            $userModel = new User();
+            $userModel = new User($this->db);
             $user = $userModel->findByEmail($email);
 
             if ($user && password_verify($password, $user['password_hash'])) {
@@ -41,17 +44,23 @@ class UserController extends Controller
     // Handle the registration form submission
     public function handleRegister()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validate form inputs
-            $fullName = $_POST['full_name'] ?? '';
             $username = $_POST['username'] ?? '';
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
             $confirmPassword = $_POST['confirm_password'] ?? '';
             $accountType = $_POST['account-type'] ?? 'personal';
 
+            // Debug logs
+            error_log("Username: $username");
+            error_log("Email: $email");
+            error_log("Password: $password");
+            error_log("Confirm Password: $confirmPassword");
+            error_log("Account Type: $accountType");
+
             // Basic validation
-            if (!empty($fullName)) {
+            if (empty($username) || empty($email) || empty($password) || empty($confirmPassword)) {
                 echo "All fields are required!";
                 return;
             }
@@ -61,29 +70,29 @@ class UserController extends Controller
                 return;
             }
 
-            // Hash the password
-            $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-
             // Create a new user
-            $userModel = new User();
-            $userId = $userModel->create($fullName, $username, [
-                'email' => $email,
-                'password_hash' => $passwordHash,
-                'account_type' => $accountType
-            ]);
+            $userModel = new User($this->db);
+            try {
+                $userId = $userModel->create($username, $email, password_hash($password, PASSWORD_DEFAULT), $accountType);
 
-            if ($userId) {
-                // Redirect to the login page after successful registration
-                header('Location: views/login.php');
-            } else {
-                echo "Registration failed!";
+                if ($userId) {
+                    // Redirect to the login page after successful registration
+                    header('Location: views/login.php');
+                    exit();
+                } else {
+                    echo "Registration failed!";
+                }
+            } catch (Exception $e) {
+                // Log error and show a generic message to the user
+                error_log("Error: " . $e->getMessage());
+                echo "An error occurred during registration. Please try again.";
             }
-        } 
-        else {
+        } else {
             // If not a POST request, show the registration form
             $this->view('register');
         }
     }
+
     // Handle the login form submission
     public function handleLogin()
     {
@@ -99,7 +108,7 @@ class UserController extends Controller
             }
 
             // Fetch the user by email
-            $userModel = new User();
+            $userModel = new User($this->db);
             $user = $userModel->findByEmail($email);
 
             // Verify the password
@@ -121,7 +130,6 @@ class UserController extends Controller
         }
     }
 
-
     // Log out the user
     public function logout()
     {
@@ -130,3 +138,4 @@ class UserController extends Controller
         $this->redirect('/');
     }
 }
+?>

@@ -6,19 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0bb7b7d6-c3a4-4b49-9177-103814682941" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/PlaylistController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/PlaylistController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SongController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SongController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/userController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/userController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Artist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Artist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Playlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Playlist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Utilisateur.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Utilisateur.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/song.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/song.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Models/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/register.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +83,7 @@
       <option name="presentableId" value="Default" />
       <updated>1738678139979</updated>
       <workItem from="1738678141056" duration="7893000" />
-      <workItem from="1738710884972" duration="18067000" />
+      <workItem from="1738710884972" duration="19492000" />
     </task>
     <servers />
   </component>

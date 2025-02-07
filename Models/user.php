@@ -1,33 +1,47 @@
 <?php
-// namespace App\Models;
 
-require_once __DIR__ . '/../config/database.php'; // Include the database connection
+require_once __DIR__ . '/../config/database.php';
 
-class User {
-    protected $db;
 
-    public function __construct() {
-        global $db; // Use the global $db connection
+class User
+{
+    private $db;
+
+    public function __construct($db)
+    {
         $this->db = $db;
     }
 
-    // Fetch a user by email
-    public function findByEmail($email) {
-        $sql = "SELECT * FROM users WHERE email = :email";
+    public function create($username, $email, $passwordHash, $accountType)
+    {
+        $sql = "INSERT INTO users (username, email, password_hash, role) VALUES (:username, :email, :password_hash, :role)";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute(['email' => $email]);
-        return $stmt->fetch();
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password_hash', $passwordHash);
+        $stmt->bindParam(':role', $accountType);
+
+        try {
+            if ($stmt->execute()) {
+                return $this->db->lastInsertId();
+            } else {
+                $errorInfo = $stmt->errorInfo();
+                error_log("SQL Error: " . $errorInfo[2]);
+                throw new Exception("Failed to create user.");
+            }
+        } catch (Exception $e) {
+            error_log("Exception: " . $e->getMessage());
+            throw $e;
+        }
     }
 
-    // Create a new user
-    public function create($username, $email, $password) {
-        $sql = "INSERT INTO users (username, email, password_hash) VALUES (:username, :email, :password)";
+    public function findByEmail($email)
+    {
+        $sql = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute([
-            'username' => $username,
-            'email' => $email,
-            'password' => password_hash($password, PASSWORD_BCRYPT)
-        ]);
-        return $this->db->lastInsertId();
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
+?>

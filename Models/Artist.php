@@ -4,6 +4,12 @@
 require_once __DIR__ . '/../../app/config/database.php'; // Include the database connection
 
 class Artist extends User {
+    private $db;
+
+    public function __construct($db) {
+        $this->db = $db;
+    }
+
     // Fetch all songs by an artist
     public function getSongsByArtist($artistId) {
         $sql = "SELECT * FROM songs WHERE artist_id = :artist_id";
