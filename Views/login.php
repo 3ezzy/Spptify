@@ -20,16 +20,17 @@
         </div>
 
         <!-- Responsive Login Form -->
-        <form id="login-form" action="/login/handle" method="POST"  class="space-y-3 md:space-y-4">
+        <form id="login-form" action="" method="POST" class="space-y-3 md:space-y-4">
             <!-- Responsive Email Input -->
             <div>
                 <label class="block text-xs md:text-sm font-medium text-gray-300 mb-1 md:mb-2">Email Address</label>
                 <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-2 md:pl-3 flex items-center">
-                            <i class="fas fa-envelope text-xs md:text-base text-gray-500"></i>
-                        </span>
+                    <span class="absolute inset-y-0 left-0 pl-2 md:pl-3 flex items-center">
+                        <i class="fas fa-envelope text-xs md:text-base text-gray-500"></i>
+                    </span>
                     <input
                         type="email"
+                        name="email"
                         required
                         placeholder="Enter your email"
                         class="w-full pl-8 md:pl-10 pr-3 py-1.5 md:py-2 text-xs md:text-sm bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
@@ -41,18 +42,19 @@
             <div>
                 <label class="block text-xs md:text-sm font-medium text-gray-300 mb-1 md:mb-2">Password</label>
                 <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-2 md:pl-3 flex items-center">
-                            <i class="fas fa-lock text-xs md:text-base text-gray-500"></i>
-                        </span>
+                    <span class="absolute inset-y-0 left-0 pl-2 md:pl-3 flex items-center">
+                        <i class="fas fa-lock text-xs md:text-base text-gray-500"></i>
+                    </span>
                     <input
                         type="password"
+                        name="password"
                         required
                         placeholder="Enter your password"
                         class="w-full pl-8 md:pl-10 pr-3 py-1.5 md:py-2 text-xs md:text-sm bg-gray-700 border border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-white"
                     >
                     <span class="absolute inset-y-0 right-0 pr-2 md:pr-3 flex items-center">
-                            <i class="fas fa-eye-slash text-xs md:text-base text-gray-500 cursor-pointer toggle-password"></i>
-                        </span>
+                        <i class="fas fa-eye-slash text-xs md:text-base text-gray-500 cursor-pointer toggle-password"></i>
+                    </span>
                 </div>
             </div>
 
