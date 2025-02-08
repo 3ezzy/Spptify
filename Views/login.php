@@ -20,7 +20,7 @@
         </div>
 
         <!-- Responsive Login Form -->
-        <form id="login-form" action="" method="POST" class="space-y-3 md:space-y-4">
+        <form id="login-form" action="login_handler.php" method="POST" class="space-y-3 md:space-y-4">
             <!-- Responsive Email Input -->
             <div>
                 <label class="block text-xs md:text-sm font-medium text-gray-300 mb-1 md:mb-2">Email Address</label>
